@@ -35,6 +35,42 @@
             margin: 50px;
         }
 
+
+        div:hover {
+            width: 300px;
+        }
+        div.transition1 {
+            div {
+                width: 100px;
+                height: 100px;
+                background: red;
+                transition: width 2s;
+            }
+        }
+        div.transition2 {
+            div {
+                width: 100px;
+                height: 100px;
+                background: red;
+                transition: width 2s, height 2s, transform 2s;
+                }
+
+                div:hover {
+                    width: 200px;
+                    height: 200px;
+                    -webkit-transform: rotate(180deg); /* Safari */
+                    transform: rotate(180deg);
+                }
+            }
+
+            div:hover {
+                width: 200px;
+                height: 200px;
+                -webkit-transform: rotate(180deg); /* Safari */
+                transform: rotate(180deg);
+            }
+        }
+
     </style>
 </head>
 
@@ -112,6 +148,9 @@
         </div>
     </article>
 </section>
+<div class="transition1">
+<div class="transition2" >
+
 
 </body>
 </html>
