@@ -6,33 +6,55 @@
  */
 
 
-
-function ConvetirUnidades (nombre, valor)  {
+ConvetirUnidades = (id, valor) => {
+    let valmetro, valpie, valpulgada, valyada;
     if (isNaN(valor)){
         alert("El valor ingresado no es un numero");
-        document.getElementById("metro").value= "";
-        document.getElementById("pulgada").value= "";
-        document.getElementById("pie").value = "";
-        document.getElementById("yarda").value= "";
+        valmetro="";
+        valpie="";
+        valpulgada= "";
+        valyada = "";
     }
-    if (nombre === "metro"){
-        document.getElementById("pulgada").value = valor*39.3701;
-        document.getElementById("pie").value = valor*3.28084;
-        document.getElementById("yarda").value=valor* 1.09361;
-    } else if (nombre === "pulgada") {
-        document.getElementById("metro").value = valor/0.0254;
-        document.getElementById("pie").value = valor/0.0833;
-        document.getElementById("yarda").value=valor/36;
-    } else if ( nombre === "pie") {
-        document.getElementById("pulgada").value = valor/0.3048;
-        document.getElementById("metro").value = valor*12;
-        document.getElementById("yarda").value=valor/3;
+    if (id === "metro"){
+        valmetro = valor;
+        valpulgada = valor*39.3701;
+       valpie = valor*3.28084;
+        valyada = valor* 1.09361;
+    } else if (id === "pulgada") {
+        valpulgada = valor;
+        valmetro = valor/0.0254;
+        valpie = valor/0.0833;
+        valyada = valor/36;
+    } else if ( id === "pie") {
+        valpie = valor;
+       valpulgada = valor/0.3048;
+        valmetro = valor*12;
+        valyada = valor/3;
 
-    } else    if (nombre === "yarda"){
-        document.getElementById("pulgada").value = valor/0.9144;
-        document.getElementById("pie").value = valor*3;
-        document.getElementById("metro").value=valor*36;
+    } else    if (id === "yarda"){
+        valyada = valor ;
+        valpulgada = valor/0.9144;
+       valpie = valor*3;
+       valmetro = valor*36;
     }
+    document.getElementById("metro").value= valmetro;
+    document.getElementById("pulgada").value= valpulgada;
+    document.getElementById("pie").value = valpie;
+    document.getElementById("yarda").value= valyada;
+
+}
 
 
+function convertirGR(id) {
+    if (id==="grados") {
+        let grat = document.getElementById("grados").value;
+        let rad = grat*Math.PI/180;
+        document.getElementById("radianes").value = rad;
+
+    } else if (id ==="radianes") {
+        let rad = document.getElementById("radianes").value;
+        let grat = rad*180/Math.PI;
+        document.getElementById("grados").value = rad;
+
+    }
 }
