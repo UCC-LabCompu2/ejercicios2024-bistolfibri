@@ -58,3 +58,12 @@ function convertirGR(id) {
 
     }
 }
+
+let mostrarocultar = (valorMO) => {
+    if (valorMO==="val_mostrar"){
+        document.getElementById("divMO").style.display = 'block' ;
+
+    } else if (valorMO==="val_ocultar") {
+        document.getElementById("divMO").style.display = 'none' ;
+    }
+}
