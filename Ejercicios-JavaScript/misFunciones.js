@@ -8,39 +8,39 @@
 
 ConvetirUnidades = (id, valor) => {
     let valmetro, valpie, valpulgada, valyada;
-    if (isNaN(valor)){
+    if (isNaN(valor)) {
         alert("El valor ingresado no es un numero");
-        valmetro="";
-        valpie="";
-        valpulgada= "";
+        valmetro = "";
+        valpie = "";
+        valpulgada = "";
         valyada = "";
     }
-    if (id === "metro"){
+    if (id === "metro") {
         valmetro = valor;
-        valpulgada = valor*39.3701;
-       valpie = valor*3.28084;
-        valyada = valor* 1.09361;
+        valpulgada = valor * 39.3701;
+        valpie = valor * 3.28084;
+        valyada = valor * 1.09361;
     } else if (id === "pulgada") {
         valpulgada = valor;
-        valmetro = valor/0.0254;
-        valpie = valor/0.0833;
-        valyada = valor/36;
-    } else if ( id === "pie") {
+        valmetro = valor / 0.0254;
+        valpie = valor / 0.0833;
+        valyada = valor / 36;
+    } else if (id === "pie") {
         valpie = valor;
-       valpulgada = valor/0.3048;
-        valmetro = valor*12;
-        valyada = valor/3;
+        valpulgada = valor / 0.3048;
+        valmetro = valor * 12;
+        valyada = valor / 3;
 
-    } else    if (id === "yarda"){
-        valyada = valor ;
-        valpulgada = valor/0.9144;
-       valpie = valor*3;
-       valmetro = valor*36;
+    } else if (id === "yarda") {
+        valyada = valor;
+        valpulgada = valor / 0.9144;
+        valpie = valor * 3;
+        valmetro = valor * 36;
     }
-    document.getElementById("metro").value=Math.round(valmetro*100)/100 ;
-    document.getElementById("pulgada").value= Math.round(valpulgada*100)/100;
+    document.getElementById("metro").value = Math.round(valmetro * 100) / 100;
+    document.getElementById("pulgada").value = Math.round(valpulgada * 100) / 100;
     document.getElementById("pie").value = valpie.toFixed(2);
-    document.getElementById("yarda").value= valyada.toFixed(2);
+    document.getElementById("yarda").value = valyada.toFixed(2);
 
 }
 
@@ -51,18 +51,19 @@ ConvetirUnidades = (id, valor) => {
  * @param {number} valor = valor ingresado por el usuario
  */
 function convertirGR(id) {
-    if (id==="grados") {
+    if (id === "grados") {
         let grat = document.getElementById("grados").value;
-        let rad = grat*Math.PI/180;
+        let rad = grat * Math.PI / 180;
         document.getElementById("radianes").value = rad;
 
-    } else if (id ==="radianes") {
+    } else if (id === "radianes") {
         let rad = document.getElementById("radianes").value;
-        let grat = rad*180/Math.PI;
+        let grat = rad * 180 / Math.PI;
         document.getElementById("grados").value = rad;
 
     }
 }
+
 /**
  * mostrar o ocultar un div
  * @method mostrarocultar
@@ -71,11 +72,11 @@ function convertirGR(id) {
  */
 
 let mostrarocultar = (valorMO) => {
-    if (valorMO==="val_mostrar"){
-        document.getElementById("divMO").style.display = 'block' ;
+    if (valorMO === "val_mostrar") {
+        document.getElementById("divMO").style.display = 'block';
 
-    } else if (valorMO==="val_ocultar") {
-        document.getElementById("divMO").style.display = 'none' ;
+    } else if (valorMO === "val_ocultar") {
+        document.getElementById("divMO").style.display = 'none';
     }
 }
 /**
@@ -124,8 +125,8 @@ let div = () => {
  */
 let pasarpagina = () => {
     let cant, unid, urlcomp;
-    cant = document.getElementById( "distancia").value;
-    unid = document.getElementsByName( "unidades")[0].value;
+    cant = document.getElementById("distancia").value;
+    unid = document.getElementsByName("unidades")[0].value;
 
     console.log(cant);
     console.log(unid);
@@ -137,14 +138,95 @@ let pasarpagina = () => {
  * permite tomar los valores de distancia y unidad en la url y escribirlos en el input
  * @method cargarvalores
  */
-let cargarvalores =() => {
-    let cantidad, unidad, urlcompleta ;
+let cargarvalores = () => {
+    let cantidad, unidad, urlcompleta;
     urlcompleta = window.location.href;
     console.log(urlcompleta);
-    urlcompleta = urlcompleta.split ( "#");
+    urlcompleta = urlcompleta.split("#");
     console.log(urlcompleta);
     cantidad = urlcompleta[1];
     unidad = urlcompleta[2];
-    document.getElementById("dist").value= cantidad + "" + unidad;
+    document.getElementById("dist").value = cantidad + "" + unidad;
 
+}
+
+/**
+ * permite dbujar circulo y cuadrado
+ * @method dibujarcircua
+ */
+
+function dibujarcircua() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var xMax = canvas.width;
+    var yMax = canvas.height;
+    var margen = 5;
+    ctx.fillStyle = "#333899";
+    ctx.fillRect(margen, yMax - 40 - margen, 40, 40);
+    ctx.arc(xMax / 2, yMax / 2, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = " #8b4c99";
+    ctx.fill()
+}
+
+/**
+ *funcion global true or false
+ */
+var bandera;
+
+/**
+ * permite dibujar lapiz
+ * @method dibujar
+ */
+
+function dibujar(event) {
+    var canvas = document.getElementById("canvasAdibujar");
+    var ctx = canvas.getContext("2d");
+
+    var posX = event.clientX;
+    var posY = event.clientY;
+    console.log(posX, posY);
+
+    canvas.onmousedown = function () {
+        bandera = true
+    };
+    canvas.onmouseup = function () {
+        bandera = false
+    };
+
+    if (bandera) {
+        ctx.fillRect(posX, posY, 5, 5);
+        ctx.fill;
+    }
+}
+
+/**
+ * permite limpiar canvas
+ * @method LimpiarCanvas
+ */
+
+function LimpiarCanvas() {
+    var canvas = document.getElementById("canvasAdibujar");
+    var ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.width;
+}
+
+/**
+ * permite dibujar una imagen
+ * @method dibujarimagen
+ */
+
+function dibujarimagen(posX, posY) {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    console.log(posX, posY);
+    var img = new Image();
+    img.src = "images/auto.png";
+    canvas.width = canvas.width;
+
+    img.onload = function () {
+        ctx.drawImage(img, posX, posY);
+    }
 }
