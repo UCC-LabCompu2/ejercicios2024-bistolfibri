@@ -8,12 +8,16 @@
     <script type="text/javascript" src="misFunciones.js"></script>
 </head>
 
-<body onload="dibujarCirCuad()">
-<h1>Canvas 1</h1>
-<p>Ejercicio: Dibujar un Circulo y un cuadrado en una página. La función debe llamarse al cargar la página</p>
-<canvas id="myCanvas" class="ejer" width="800px" height="600px">
+<body onload="requestAnimationFrame(animarAutoNuevo)" >
+<canvas id="myCanvas" class="ejer" width="1000px" height="600px">
     Tu navegador no soporta el tag de HTML5 canvas.
 </canvas>
+
+<dialog id="myDialog">
+    <h3>Error</h3>
+    <p>Las coordenadas ingresadas son incorrectas </p>
+    <button type="button" onclick="cerrarDialog()"> Cerrar</button>
+</dialog>
 
 </body>
 </html>

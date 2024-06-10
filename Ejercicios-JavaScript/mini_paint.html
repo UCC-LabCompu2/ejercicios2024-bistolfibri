@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mini-Paint</title>
+    <title>Mini Paint</title>
     <script type="text/javascript" src="misFunciones.js"></script>
+    <link href="miEstilo.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<canvas id="canvasAdibujar" class="ejer" onmousemove="dibujar(event) " width="800px" height="600px">
+<body onload="cargarlisteners()">
+<canvas width="800px" height="600px" id="lienzo" class="ejer" >
+    <button type="button" onclick="limpiarCanvas()">
+
+    </button>
 
 </canvas>
-<button onclick="LimpiarCanvas()">
-    Limpiar Cavas
-</button>
-
 </body>
 </html>
