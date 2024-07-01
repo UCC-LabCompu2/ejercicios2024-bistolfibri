@@ -125,7 +125,8 @@ let division = () => {
     num2 = Number(document.getElementsByName("div_num2")[0].value);
     document.getElementsByName("div_total")[0].innerHTML = num1 / num2;
 }
-function cargarWeb(){
+
+function cargarWeb() {
     var cant, unidad, urlComp;
 
     cant = document.getElementById("distancia").value;
@@ -135,7 +136,7 @@ function cargarWeb(){
     window.open(urlComp);
 }
 
-function cargarResultado(){
+function cargarResultado() {
     var urlComp, can, un;
 
     urlComp = window.location.href.split("/")[5];
@@ -150,16 +151,16 @@ function cargarResultado(){
  * Dibujar círculo y cuadrado dentro de un canvas
  * @method dibujarCirculoCuadrado
  */
-function dibujarCirCuad(){
+function dibujarCirCuad() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     var xMax = canvas.width;
     var yMax = canvas.height;
     var margen = 5;
     ctx.fillStyle = "#333899";
-    ctx.fillRect(margen, yMax-40-margen, 40, 40);
+    ctx.fillRect(margen, yMax - 40 - margen, 40, 40);
 
-    ctx.arc(xMax/2, yMax/2, 20, 0, 2*Math.PI);
+    ctx.arc(xMax / 2, yMax / 2, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "rgba(244,140,71,0.99)";
     ctx.fill();
@@ -173,12 +174,9 @@ function cargarlisteners() {
     document.getElementById("lienzo").addEventListener("mousemove", dibujar);
 }
 
-let bandera;
+var bandera;
 
-/**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- */
+
 function dibujar(event) {
     const canvas = document.getElementById("lienzo");
     const ctx = canvas.getContext("2d");
@@ -199,10 +197,7 @@ function dibujar(event) {
     }
 }
 
-/**
- * Conversion de unidades, de metros, pulgadas, pies y yardas
- * @method cambiarUnidades
- */
+
 function limpiarCanvas() {
     const canvas = document.getElementById("lienzo");
     canvas.width = canvas.width;
@@ -267,7 +262,7 @@ function dibujarCuadriculado() {
     ctx.font = "10pt Verdana";
     ctx.fillStyle = "#ff0000";
     for (let i = 0; i < anchomaximo;) {
-        ctx.fillText (string(numY), i, alturamaxima / 2);
+        ctx.fillText(string(numY), i, alturamaxima / 2);
         i += paso;
         numX++;
     }
@@ -324,17 +319,19 @@ function animarAuto() {
 }
 
 let intervalId;
-function comenzarAnimacion(){
-    intervalId = setInterval(animarAuto,15);
+
+function comenzarAnimacion() {
+    intervalId = setInterval(animarAuto, 15);
     setTimeout(detenerAuto, 6000);
 }
 
-function detenerAuto(){
+function detenerAuto() {
     clearInterval(intervalId);
 }
 
 let animarID;
-function animarAutoNuevo(){
+
+function animarAutoNuevo() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     const img = new Image();
@@ -350,11 +347,29 @@ function animarAutoNuevo(){
     }
 }
 
-function animarNuevo(){
-    setTimeout(cancelarNuevaAnimacion,6000);
+function animarNuevo() {
+    setTimeout(cancelarNuevaAnimacion, 6000);
     requestAnimationFrame(animarAutoNuevo);
 }
 
 function cancelarNuevaAnimacion() {
     cancelAnimationFrame(animarID);
+}
+
+function GuardarLocalStorage() {
+    let distancia, unidad;
+    distancia = document.getElementById('distancia').value;
+    unidad = document.getElementById('unidades')[0].value;
+
+    localStorage.setItem("DistanciaLs", distancia);
+    localStorage.setItem("UnidadesLs", unidad);
+
+    window.open('Web2.html');
+}
+
+function CargarLocalStorage() {
+    let cantidad, unidad;
+    cantidad = localStorage.getItem("DistanciaLS");
+    unidad = localStorage.getItem("UnidadesLS");
+    document.getElementById("dist").value = cantidad + " " + unidad;
 }
